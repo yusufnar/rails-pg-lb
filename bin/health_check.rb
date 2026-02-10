@@ -56,21 +56,25 @@ def check_node(host, role_expected)
         SQL
         
         result = conn.exec(query).collect { |row| row }[0]
-        lag = result['real_lag_s'].to_f
+        lag_s = result['lag_s'].to_f
+        real_lag_s = result['real_lag_s'].to_f
         is_sync = result['is_sync'] == 't'
         
-        healthy = !is_paused && (lag <= MAX_LAG_SECONDS)
+        healthy = !is_paused && (real_lag_s <= MAX_LAG_SECONDS)
         
         message = []
         message << "Replay paused" if is_paused
         message << "In sync" if is_sync && !is_paused
         message << "Syncing..." if !is_sync && !is_paused
+        message << "Raw Lag: #{lag_s}s"
         
         status = { 
           role: 'replica', 
           healthy: healthy, 
-          lag_ms: (lag * 1000).to_i,
-          message: message.join(", ")
+          lag_ms: (real_lag_s * 1000).to_i,
+          message: message.join(", "),
+          is_sync: is_sync,
+          is_paused: is_paused
         }
       end
     end
@@ -88,7 +92,10 @@ loop do
     status = check_node(host, role_name == :primary ? :primary : :replica)
     $redis.set("db_status:#{role_name}", status.to_json)
     # Debug output
-    puts "[#{Time.now}] #{role_name} (#{host}): #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'} (Lag: #{status[:lag_ms] || 'N/A'}ms)"
+    msg = "[#{Time.now}] #{role_name} (#{host}): #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'}"
+    msg += " (Lag: #{status[:lag_ms] || 'N/A'}ms)"
+    msg += " Details: #{status[:message]}" if status[:message]
+    puts msg
   end
   
   sleep CHECK_INTERVAL
