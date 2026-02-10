@@ -6,3 +6,4 @@ tmp/cache/bootsnap/compile-cache-iseq/d3/767f4d91667c7d
 log/development.log
 log/development.log
 tmp/*
+log/*
