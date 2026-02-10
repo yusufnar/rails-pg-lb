@@ -1,0 +1,67 @@
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/rails
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://postgres:password@postgres-primary:5432/app_development?encoding=utf8
+      PRIMARY_DB_HOST: postgres-primary
+      REPLICA1_DB_HOST: postgres-replica1
+      REPLICA2_DB_HOST: postgres-replica2
+      DB_USER: postgres
+      DB_PASSWORD: password
+    depends_on:
+      - postgres-primary
+      - postgres-replica1
+      - postgres-replica2
+
+  postgres-primary:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_development
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - postgres-primary_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-primary.sh:/docker-entrypoint-initdb.d/init-primary.sh
+    ports:
+      - "5432:5432"
+    command: postgres -c wal_level=replica -c max_wal_senders=10 -c max_replication_slots=10 -c hot_standby=on
+
+  postgres-replica1:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+    depends_on:
+      - postgres-primary
+    volumes:
+      - postgres-replica1_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-replica.sh:/init-replica.sh
+    entrypoint: ["/bin/bash", "/init-replica.sh"]
+    command: postgres
+
+  postgres-replica2:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+    depends_on:
+      - postgres-primary
+    volumes:
+      - postgres-replica2_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-replica.sh:/init-replica.sh
+    entrypoint: ["/bin/bash", "/init-replica.sh"]
+    command: postgres
+
+volumes:
+  postgres-primary_data:
+  postgres-replica1_data:
+  postgres-replica2_data:

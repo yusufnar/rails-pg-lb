@@ -1,0 +1,20 @@
+<h1>Last Ynar Record</h1>
+
+<h1>Last Ynar Record</h1>
+
+<% if @content %>
+  <p>Content: <%= @content %></p>
+  <p>Created At: <%= @created_at %></p>
+<% else %>
+  <p>No records found.</p>
+<% end %>
+
+<p>
+  <small>Connected to Host (Rails Config): <%= ActiveRecord::Base.connection_pool.db_config.host %></small><br>
+  <small>Server IP (from DB): <%= @server_ip %></small><br>
+  <small>App IP (Controller): <%= @app_ip %></small><br>
+  <small>Current Role: <%= ActiveRecord::Base.current_role %></small><br>
+  <small>Current Shard: <%= ActiveRecord::Base.current_shard %></small><br>
+  <small>Prevent Writes: <%= ActiveRecord::Base.connected_to?(role: :reading) %></small><br>
+  <small>DB Time: <%= @db_time %></small>
+</p>

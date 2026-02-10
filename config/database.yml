@@ -1,0 +1,33 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DB_USER") { "postgres" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "password" } %>
+
+development:
+  primary:
+    <<: *default
+    database: app_development
+    host: <%= ENV.fetch("PRIMARY_DB_HOST") { "postgres-primary" } %>
+  replica:
+    <<: *default
+    database: app_development
+    host: <%= ENV.fetch("REPLICA_DB_HOSTS") { "postgres-replica1,postgres-replica2" } %>
+    replica: true
+
+test:
+  <<: *default
+  database: app_test
+  host: postgres-primary
+
+production:
+  primary:
+    <<: *default
+    database: app_production
+    host: <%= ENV.fetch("PRIMARY_DB_HOST") { "postgres-primary" } %>
+  replica:
+    <<: *default
+    database: app_production
+    host: <%= ENV.fetch("REPLICA_DB_HOSTS") { "postgres-replica1,postgres-replica2" } %>
+    replica: true
