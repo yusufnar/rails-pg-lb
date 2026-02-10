@@ -54188,3 +54188,603 @@ LIMIT 1
 Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.2ms)
 
 
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:10 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.2ms)
+Completed 200 OK in 9ms (Views: 3.3ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:11 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 3.6ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:12 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.4ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:13 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.0ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:14 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 3.7ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:15 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:16 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 2.9ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:17 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.8ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:18 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.4ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:19 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.3ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:20 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 1.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 6.4ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:21 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 4.6ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:22 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.9ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 5.8ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:25 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 0.3ms)
+Completed 200 OK in 8ms (Views: 2.6ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:26 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.2ms)
+Completed 200 OK in 8ms (Views: 2.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:27 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 2.5ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:28 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.0ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:29 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:30 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:31 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 1.9ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:32 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:33 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.4ms)
+Completed 200 OK in 8ms (Views: 3.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:34 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.7ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:35 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 3.1ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:36 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 2.5ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:37 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 4.3ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:38 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 2.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:39 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.2ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 11:07:41 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.1ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.2ms)
+
+
