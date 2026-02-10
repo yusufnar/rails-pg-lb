@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     ApplicationRecord.connected_to(role: role) do
       yield
     end
+    routing_duration = Thread.current[:redis_routing_duration]
+    Rails.logger.info "Redis Routing Duration: #{(routing_duration * 1000).round(2)}ms" if routing_duration
   end
 
   # Changes to the importmap will invalidate the etag for HTML responses

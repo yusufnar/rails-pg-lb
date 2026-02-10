@@ -12,6 +12,7 @@ class DatabaseLoadBalancer
   def reading_role
     healthy_roles = []
     
+    start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @replica_roles.each do |role|
       status_json = @redis.get("db_status:#{role}")
       if status_json
@@ -19,7 +20,9 @@ class DatabaseLoadBalancer
         healthy_roles << role if status["healthy"]
       end
     end
-
+    duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
+    Thread.current[:redis_routing_duration] = duration
+    
     role = if healthy_roles.any?
       # Simple round robin based on current time or random for simplicity since we don't track state across requests here easily without a mutex on a shared list
       # But we want to maintain the round-robin feel.
@@ -34,7 +37,7 @@ class DatabaseLoadBalancer
       :writing
     end
     
-    Rails.logger.info "DatabaseLoadBalancer: Selected role #{role} from healthy list: #{healthy_roles}"
+    Rails.logger.info "DatabaseLoadBalancer: Selected role #{role} from healthy list: #{healthy_roles} (Redis fetch took #{(duration * 1000).round(2)}ms)"
     role
   end
 end

@@ -18,7 +18,8 @@
   <small>Current Role: <%= ActiveRecord::Base.current_role %></small><br>
   <small>Current Shard: <%= ActiveRecord::Base.current_shard %></small><br>
   <small>Prevent Writes: <%= ActiveRecord::Base.connected_to?(role: :reading) %></small><br>
-  <small>DB Time: <%= @db_time %></small>
+  <small>DB Time: <%= @db_time %></small><br>
+  <small>Redis Routing Time: <%= "#{(Thread.current[:redis_routing_duration] * 1000).round(3)} ms" if Thread.current[:redis_routing_duration] %></small>
 </p>
 
 <!-- MONITOR_DATA: <%= @db_statuses.to_json %> -->
