@@ -10,7 +10,7 @@
 <% end %>
 
 <p>
-  <small>Connected to Host (Rails Config): <%= ActiveRecord::Base.connection_pool.db_config.host %></small><br>
+  <small>Connected to Host (Rails Config): <%= ApplicationRecord.connection_pool.db_config.host %></small><br>
   <small>Server IP (from DB): <%= @server_ip %></small><br>
   <small>App IP (Controller): <%= @app_ip %></small><br>
   <small>Current Role: <%= ActiveRecord::Base.current_role %></small><br>

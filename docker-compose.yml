@@ -14,10 +14,12 @@ services:
       REPLICA2_DB_HOST: postgres-replica2
       DB_USER: postgres
       DB_PASSWORD: password
+      REDIS_URL: redis://redis:6379/0
     depends_on:
       - postgres-primary
       - postgres-replica1
       - postgres-replica2
+      - redis
 
   postgres-primary:
     image: postgres:17
@@ -65,3 +67,27 @@ volumes:
   postgres-primary_data:
   postgres-replica1_data:
   postgres-replica2_data:
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  rds_health_check:
+    build: .
+    command: bundle exec ruby bin/health_check.rb
+    volumes:
+      - .:/rails
+    environment:
+      RAILS_ENV: development
+      PRIMARY_DB_HOST: postgres-primary
+      REPLICA1_DB_HOST: postgres-replica1
+      REPLICA2_DB_HOST: postgres-replica2
+      DB_USER: postgres
+      DB_PASSWORD: password
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - postgres-primary
+      - postgres-replica1
+      - postgres-replica2
+      - redis

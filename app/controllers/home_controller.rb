@@ -12,10 +12,8 @@ class HomeController < ApplicationController
       LIMIT 1
     SQL
 
-    # Execute query on the reading role (replica)
-    result = ApplicationRecord.connected_to(role: :reading) do
-      ApplicationRecord.connection.select_one(sql)
-    end
+    # Query executed within the connection context set by ApplicationController
+    result = ApplicationRecord.connection.select_one(sql)
 
     if result
       @content = result["content"]

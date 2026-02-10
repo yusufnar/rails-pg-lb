@@ -16,10 +16,10 @@ module App
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    # Enable automatic database switching
-    config.active_record.database_selector = { delay: 2.seconds }
-    config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
-    config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+    # Disable default automatic database switching to use custom Load Balancer
+    # config.active_record.database_selector = { delay: 2.seconds }
+    # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
+    # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
     # Configuration for the application, engines, and railties goes here.
     #

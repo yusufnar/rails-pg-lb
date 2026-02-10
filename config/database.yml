@@ -10,10 +10,15 @@ development:
     <<: *default
     database: app_development
     host: <%= ENV.fetch("PRIMARY_DB_HOST") { "postgres-primary" } %>
-  replica:
+  replica_1:
     <<: *default
     database: app_development
-    host: <%= ENV.fetch("REPLICA_DB_HOSTS") { "postgres-replica1,postgres-replica2" } %>
+    host: <%= ENV.fetch("REPLICA1_DB_HOST") { "postgres-replica1" } %>
+    replica: true
+  replica_2:
+    <<: *default
+    database: app_development
+    host: <%= ENV.fetch("REPLICA2_DB_HOST") { "postgres-replica2" } %>
     replica: true
 
 test:
@@ -26,8 +31,13 @@ production:
     <<: *default
     database: app_production
     host: <%= ENV.fetch("PRIMARY_DB_HOST") { "postgres-primary" } %>
-  replica:
+  replica_1:
     <<: *default
     database: app_production
-    host: <%= ENV.fetch("REPLICA_DB_HOSTS") { "postgres-replica1,postgres-replica2" } %>
+    host: <%= ENV.fetch("REPLICA1_DB_HOST") { "postgres-replica1" } %>
+    replica: true
+  replica_2:
+    <<: *default
+    database: app_production
+    host: <%= ENV.fetch("REPLICA2_DB_HOST") { "postgres-replica2" } %>
     replica: true
