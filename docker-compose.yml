@@ -63,11 +63,6 @@ services:
     entrypoint: ["/bin/bash", "/init-replica.sh"]
     command: postgres
 
-volumes:
-  postgres-primary_data:
-  postgres-replica1_data:
-  postgres-replica2_data:
-
   redis:
     image: redis:7-alpine
     ports:
@@ -91,3 +86,8 @@ volumes:
       - postgres-replica1
       - postgres-replica2
       - redis
+
+volumes:
+  postgres-primary_data:
+  postgres-replica1_data:
+  postgres-replica2_data:

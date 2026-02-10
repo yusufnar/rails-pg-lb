@@ -15120,3 +15120,1651 @@ DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replic
            END /*application='App'*/[0m
   ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
 DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:01:50 +0000
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant DatabaseLoadBalancer::Redis):
+  
+app/services/database_load_balancer.rb:9:in `initialize'
+app/controllers/application_controller.rb:10:in `switch_database'
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:01:50 +0000
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant DatabaseLoadBalancer::Redis):
+  
+app/services/database_load_balancer.rb:9:in `initialize'
+app/controllers/application_controller.rb:10:in `switch_database'
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:01:51 +0000
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant DatabaseLoadBalancer::Redis):
+  
+app/services/database_load_balancer.rb:9:in `initialize'
+app/controllers/application_controller.rb:10:in `switch_database'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_is_in_recovery() /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:59:in `block in replica_healthy?'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT CASE
+             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
+             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
+           END /*application='App'*/[0m
+  ↳ app/services/database_load_balancer.rb:69:in `block in replica_healthy?'
+DatabaseLoadBalancer: Health check complete. Healthy roles: [:replica_1, :replica_2]
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:05:37 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='App'*/[0m
+Processing by HomeController#index as */*
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 5.2ms | ActiveRecord: 4.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:05:46 +0000
+Processing by HomeController#index as */*
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 0.7ms | ActiveRecord: 5.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:06:16 +0000
+Processing by HomeController#index as */*
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.4ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 0.7ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 6.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:06:47 +0000
+Processing by HomeController#index as */*
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:06:47 +0000
+Processing by HomeController#index as */*
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (7.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 1.0ms | ActiveRecord: 10.2ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:06:47 +0000
+Processing by HomeController#index as */*
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.2ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:20 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | GC: 0.6ms)
+Completed 200 OK in 23ms (Views: 20.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:21 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:21 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 1.2ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:22 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.3ms)
+Completed 200 OK in 7ms (Views: 2.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:22 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 4.7ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:22 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.3ms)
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:22 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:22 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.2ms)
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:23 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:23 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:23 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:23 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:23 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.2ms)
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 3.4ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.6ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:24 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.1ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:25 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:25 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.6ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:25 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_2 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 3.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 192.168.156.1 at 2026-02-10 10:07:25 +0000
+Processing by HomeController#index as HTML
+DatabaseLoadBalancer: Selected role replica_1 from healthy list: [:replica_1, :replica_2]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT
+  content,
+  created_at,
+  to_char(NOW(), 'YYYY-MM-DD HH24:MI:SS.MS') as db_time,
+  inet_server_addr() as server_ip
+FROM ynars
+ORDER BY id DESC
+LIMIT 1
+ /*action='index',application='App',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:16:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 3.5ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+

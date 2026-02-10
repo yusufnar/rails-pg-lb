@@ -22,5 +22,13 @@ class HomeController < ApplicationController
       @server_ip = result["server_ip"]
     end
     @app_ip = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }&.ip_address
+
+    # Fetch Redis statuses
+    redis = Redis.new(url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0"))
+    @db_statuses = {}
+    [:primary, :replica_1, :replica_2].each do |role|
+      status_json = redis.get("db_status:#{role}")
+      @db_statuses[role] = status_json ? JSON.parse(status_json) : { "healthy" => false, "message" => "No data" }
+    end
   end
 end
