@@ -4,8 +4,6 @@ tmp/cache/bootsnap/compile-cache-iseq/c0/48f0771d2781dc
 tmp/cache/bootsnap/compile-cache-iseq/cb/4d1cc50329b5e9
 tmp/cache/bootsnap/compile-cache-iseq/d3/767f4d91667c7d
 log/development.log
-log/development.log
 tmp/*
 log/*
-log/development.log
-development.log
+
