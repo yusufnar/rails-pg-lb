@@ -38,16 +38,40 @@ def check_node(host, role_expected)
       if !is_recovery
         status = { role: 'primary', healthy: false, message: 'Expected replica but found primary' }
       else
-        lag = conn.exec(
-          "SELECT CASE
-             WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
-             WHEN pg_last_xact_replay_timestamp() IS NULL THEN 0
-             ELSE extract(epoch from (now() - pg_last_xact_replay_timestamp()))
-           END"
-        ).getvalue(0, 0).to_f
+        # 1. Check if WAL replay is explicitly paused
+        is_paused = conn.exec("SELECT pg_is_wal_replay_paused()").getvalue(0, 0) == 't'
         
-        healthy = lag <= MAX_LAG_SECONDS
-        status = { role: 'replica', healthy: healthy, lag_ms: (lag * 1000).to_i }
+        # 2. Execute user-provided lag check SQL
+        query = <<~SQL
+          WITH stats AS (
+              SELECT 
+                  pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() as is_sync,
+                  COALESCE(EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())), 0) as lag_s
+          )
+          SELECT 
+              is_sync,
+              ROUND(lag_s::numeric, 2) as lag_s,
+              CASE WHEN is_sync THEN 0 ELSE ROUND(lag_s::numeric, 2) END as real_lag_s
+          FROM stats;
+        SQL
+        
+        result = conn.exec(query).collect { |row| row }[0]
+        lag = result['real_lag_s'].to_f
+        is_sync = result['is_sync'] == 't'
+        
+        healthy = !is_paused && (lag <= MAX_LAG_SECONDS)
+        
+        message = []
+        message << "Replay paused" if is_paused
+        message << "In sync" if is_sync && !is_paused
+        message << "Syncing..." if !is_sync && !is_paused
+        
+        status = { 
+          role: 'replica', 
+          healthy: healthy, 
+          lag_ms: (lag * 1000).to_i,
+          message: message.join(", ")
+        }
       end
     end
     
