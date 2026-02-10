@@ -5,7 +5,7 @@ require 'json'
 $stdout.sync = true
 
 # Configuration from environment
-CHECK_INTERVAL = 5
+CHECK_INTERVAL = 1
 MAX_LAG_SECONDS = 1.0
 REDIS_URL = ENV.fetch('REDIS_URL', 'redis://localhost:6379/0')
 
@@ -69,6 +69,7 @@ def check_node(host, role_expected)
         message << "In sync" if is_sync && !is_paused
         message << "Syncing..." if !is_sync && !is_paused
         message << "Raw Lag: #{lag_s}s"
+        message << "Real Lag: #{real_lag_s}s"
         
         status = { 
           role: 'replica', 

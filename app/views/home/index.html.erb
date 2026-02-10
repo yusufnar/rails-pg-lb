@@ -1,4 +1,6 @@
-<h1>Last Ynar Record</h1>
+<head>
+  <meta http-equiv="refresh" content="1">
+</head>
 
 <h1>Last Ynar Record</h1>
 
@@ -18,6 +20,8 @@
   <small>Prevent Writes: <%= ActiveRecord::Base.connected_to?(role: :reading) %></small><br>
   <small>DB Time: <%= @db_time %></small>
 </p>
+
+<!-- MONITOR_DATA: <%= @db_statuses.to_json %> -->
 
 <h3>Database Health Monitor (via Redis)</h3>
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: left;">
