@@ -2,6 +2,8 @@ require 'pg'
 require 'redis'
 require 'json'
 
+$stdout.sync = true
+
 # Configuration from environment
 CHECK_INTERVAL = 5
 MAX_LAG_SECONDS = 1.0
