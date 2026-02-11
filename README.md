@@ -20,39 +20,30 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
 ## 🏗 Architecture
 
 ```text
-       +-------------+
-       | Internet/User|
-       +------+------+
-              |
-       +------v------+
-       |  Rails App  |
-       +------+------+
-              |
-      +-------+---------------------------+
-      |                                   |
-+-----v------+ (Writes)          +--------v---------+ (Reads)
-|  Primary   | <-----------------+ DatabaseLoadBalancer |
-|     DB     |  (Fallback if     +--------+---------+
-+-----+-+----+   Replicas Down)           |
-      | |                                 |
-      | +---------------------+           | (Routes to Healthy Replica)
-      | Replication           |           |
-      |                       |     +-----v-----+
-+-----v-----+          +------v-----+     |
-| Replica 1 |          | Replica 2  |     |
-+-----------+          +------------+     |
-                                          |
-                                          |
-       +-----------+                      |
-       |   Redis   | <--------------------+
-       +-----+-----+
-             ^
-             | (Updates Health Status)
-             |
-      +------+-------+
-      | Health Check |
-      |   Service    |
-      +--------------+
+       User
+         |
+         v
+  +--------------+              +--------------+
+  |   Rails App  |              | Health Check |
+  | (Load Balancer)             |    Service   |
+  +------+-------+              +-------+------+
+         |                              |
+         | (Reads State)                | (Updates State)
+         v                              v
+  +--------------------------------------------+
+  |                   Redis                    |
+  +--------------------------------------------+
+
+         |
+         | (Routes Reads)
+         v
+  +--------------+              +--------------+
+  |   Replicas   |              |   Primary    |
+  |   (1 & 2)    |              |     DB       |
+  +--------------+              +--------------+
+         |                             ^
+         | (Replication)               | (Writes / Fallback)
+         +-----------------------------+
 ```
 
 ### 1. Database Topology
