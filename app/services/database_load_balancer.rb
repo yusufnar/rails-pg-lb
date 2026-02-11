@@ -13,12 +13,17 @@ class DatabaseLoadBalancer
     healthy_roles = []
     
     start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-    @replica_roles.each do |role|
-      status_json = @redis.get("db_status:#{role}")
-      if status_json
-        status = JSON.parse(status_json)
-        healthy_roles << role if status["healthy"]
+    begin
+      @replica_roles.each do |role|
+        status_json = @redis.get("db_status:#{role}")
+        if status_json
+          status = JSON.parse(status_json)
+          healthy_roles << role if status["healthy"]
+        end
       end
+    rescue Redis::BaseConnectionError => e
+      Rails.logger.error "DatabaseLoadBalancer: Redis is down (#{e.message}). Falling back to all replicas."
+      healthy_roles = @replica_roles
     end
     duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
     Thread.current[:redis_routing_duration] = duration

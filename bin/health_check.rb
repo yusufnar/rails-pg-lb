@@ -93,7 +93,13 @@ puts "Starting DB Health Check monitor..."
 loop do
   NODES.each do |role_name, host|
     status = check_node(host, role_name == :primary ? :primary : :replica)
-    $redis.set("db_status:#{role_name}", status.to_json)
+    new_status_json = status.to_json
+    key = "db_status:#{role_name}"
+    current_status_json = $redis.get(key)
+
+    if new_status_json != current_status_json
+      $redis.set(key, new_status_json)
+    end
     # Debug output
     msg = "[#{Time.now}] #{role_name} (#{host}): #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'}"
     msg += " (Lag: #{status[:lag_ms] || 'N/A'}ms)"
