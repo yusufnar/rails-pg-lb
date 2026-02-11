@@ -19,38 +19,43 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
 
 ## 🏗 Architecture
 
+The system implements a **Read/Write Split** architecture at the application layer:
+
+*   **Writes (POST, PUT, DELETE, PATCH)**: Routed directly to the Primary database by default.
+*   **Reads (GET, HEAD)**: Routed via the `DatabaseLoadBalancer` to available healthy replicas.
+
 ```text
-       User
-         |
-         v
-  +----------------------+            +--------------+
-  |      Rails App       |            | Health Check |
-  |                      |            |    Service   |
-  |    (Writes) (Reads)  |            +-------+------+
-  |       |        |     |                    |
-  |       |    +---+-----------+              | (Updates)
-  |       |    | Load Balancer |              v
-  |       |    |    Logic      |<-----+ +-----------+
-  |       |    +-------+-------+      | |   Redis   |
-  +-------+------------+-------+      +-+-----------+
-          |            |                    ^
-          |      (Select Role)              | (State)
-          |            |                    |
-          v            v                    |
-  +-----------+    +----------+             |
-  |  Primary  |<---| Replicas |-------------+
-  |    DB     |    | (1 & 2)  |
-  +-----------+    +----------+
-        ^               |
-        |               |
-        +--(Replication)+
+       User Request
+            |
+            v
+   +----------------------+
+   |   ApplicationController |
+   |    (Routing Logic)      |
+   +----------+-----------+
+              |
+    +---------+----------+
+    |                    |
+[Write Ops]          [Read Ops]
+    |                    |
+    v                    v
++---------+      +----------------------+            +--------------+
+| Primary |      | DatabaseLoadBalancer | <------+   |    Redis     |
+|   DB    |      |    (Selection)       | (Read)     |    (State)   |
++---------+      +--------+-------------+            +------+-------+
+                          |                                 ^
+                  +-------+-------+                         |
+                  |               |                         | (Updates)
+                  v               v                  +------+-------+
+            +-----------+   +-----------+            | Health Check |
+            | Replica 1 |   | Replica 2 |            |    Service   |
+            +-----------+   +-----------+            +--------------+
 ```
 
 ### 1. Database Topology
 The system consists of three PostgreSQL nodes:
-*   **Primary**: Handles all writes (`:writing` role).
-*   **Replica 1 & 2**: Handle read traffic (`:reading` role).
-*   **Replication**: Asynchronous streaming replication.
+*   **Primary**: Handles all writes and acts as a fallback for reads.
+*   **Replica 1 & 2**: Dedicated to handling read traffic.
+*   **Replication**: Asynchronous streaming replication from Primary to Replicas.
 
 ### 2. Health Check Service
 A dedicated process (`bin/health_check.rb`) runs alongside the application (container: `rds_health_check`). It:
@@ -59,7 +64,7 @@ A dedicated process (`bin/health_check.rb`) runs alongside the application (cont
 *   Updates the status of each node in **Redis** (`db_status:replica_1`, etc.).
 
 ### 3. Load Balancing Logic
-The `DatabaseLoadBalancer` service determines the best replica for read operations:
+The `DatabaseLoadBalancer` service determines the best replica for **read operations**:
 1.  **Check Local Cache**: Returns cached healthy roles if the cache is fresh (< 2s).
 2.  **Check Redis**: Fetches current health status from Redis.
 3.  **Circuit Breaker**: If Redis is down, it halts Redis checks for 10s (`failure_backoff`) and defaults to using all replicas to prevent cascading failures.
@@ -67,13 +72,20 @@ The `DatabaseLoadBalancer` service determines the best replica for read operatio
 5.  **Fallback**: If no healthy replicas exist, it falls back to the Primary node.
 
 ### 4. Request Lifecycle
-The `ApplicationController` uses an `around_action` to switch the database context:
+The `ApplicationController` uses an `around_action` to intelligently route traffic:
+
 ```ruby
 around_action :switch_database
 
 def switch_database(&block)
-  role = DatabaseLoadBalancer.instance.reading_role
-  ApplicationRecord.connected_to(role: role) do
+  if request.get? || request.head?
+    # READS: Use Load Balancer to select a healthy replica
+    role = DatabaseLoadBalancer.instance.reading_role
+    ApplicationRecord.connected_to(role: role) do
+      yield
+    end
+  else
+    # WRITES: Direct to Primary (Default behavior)
     yield
   end
 end
@@ -108,7 +120,7 @@ The repository includes several scripts to simulate failures and verifying the l
 | `test_replica_down.sh` | Stops `postgres-replica1` and verifies traffic shifts to `replica2`. |
 | `test_replica_lag.sh` | Pauses WAL replay on `replica2` to simulate lag > 1s. |
 | `test_redis_down.sh` | Stops Redis to test the Circuit Breaker functionality. |
-| `test_primary_down.sh` | Simulates a primary failure (note: this app reads can continue, writes will fail). |
+| `test_primary_down.sh` | Simulates a primary failure. Reads continue via replicas, but writes will fail. |
 | `test_both_replicas_down.sh` | Stops both replicas to verify fallback to Primary for reads. |
 | `generate_traffic.sh` | Sends concurrent requests to test load distribution. |
 
