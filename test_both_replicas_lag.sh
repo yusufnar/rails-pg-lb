@@ -32,8 +32,8 @@ echo "Step 4: Resuming WAL replay on BOTH replicas..."
 docker compose exec -u postgres postgres-replica1 psql -d app_development -c "SELECT pg_wal_replay_resume();"
 docker compose exec -u postgres postgres-replica2 psql -d app_development -c "SELECT pg_wal_replay_resume();"
 
-echo "Step 5: Waiting 5 seconds for recovery..."
-sleep 5
+echo "Step 5: Waiting 1 second for recovery..."
+sleep 1
 
 echo "Final status (should be HEALTHY on both):"
 docker compose exec redis redis-cli GET "db_status:replica_1"
