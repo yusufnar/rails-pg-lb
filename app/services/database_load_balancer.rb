@@ -1,38 +1,74 @@
 class DatabaseLoadBalancer
   include Singleton
 
-  CHECK_INTERVAL = 5.seconds
+  CACHE_TTL = 1.second
 
   def initialize
     @replica_roles = [:replica_1, :replica_2]
     @mutex = Mutex.new
-    @redis = Redis.new(url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0"))
+    @redis = Redis.new(
+      url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0"),
+      connect_timeout: 0.1,
+      read_timeout: 0.1
+    )
+    @redis_last_failure_at = nil
+    @failure_backoff = 10.seconds
+    @last_checked_at = nil
+    @cached_healthy_roles = []
   end
 
   def reading_role
-    healthy_roles = []
-    
-    start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-    begin
-      @replica_roles.each do |role|
-        status_json = @redis.get("db_status:#{role}")
-        if status_json
-          status = JSON.parse(status_json)
-          healthy_roles << role if status["healthy"]
-        end
+    # 1. Check Cache
+    cached_roles = @mutex.synchronize do
+      if @last_checked_at && (Time.current - @last_checked_at) < CACHE_TTL
+        @cached_healthy_roles
       end
-    rescue StandardError => e
-      Rails.logger.error "DatabaseLoadBalancer: Redis error (#{e.class}: #{e.message}). Falling back to all replicas."
-      healthy_roles = @replica_roles
     end
-    duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
-    Thread.current[:redis_routing_duration] = duration
+
+    if cached_roles
+      Thread.current[:redis_routing_duration] = 0
+      return select_role(cached_roles, "cache hit")
+    end
+
+    # 2. Fetch from Redis (if not cached)
+    healthy_roles = []
+    start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     
+    # Circuit Breaker: Skip Redis if we had a recent failure
+    if @redis_last_failure_at && (Time.current - @redis_last_failure_at) < @failure_backoff
+      healthy_roles = @replica_roles
+      duration = 0
+    else
+      begin
+        @replica_roles.each do |role|
+          status_json = @redis.get("db_status:#{role}")
+          if status_json
+            status = JSON.parse(status_json)
+            healthy_roles << role if status["healthy"]
+          end
+        end
+      rescue StandardError => e
+        @redis_last_failure_at = Time.current
+        Rails.logger.error "DatabaseLoadBalancer: Redis error (#{e.class}: #{e.message}). Circuit breaker opened for #{@failure_backoff}s. Falling back to all replicas."
+        healthy_roles = @replica_roles
+      end
+      duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
+    end
+    
+    # 3. Update Cache
+    @mutex.synchronize do
+      @cached_healthy_roles = healthy_roles
+      @last_checked_at = Time.current
+    end
+
+    Thread.current[:redis_routing_duration] = duration
+    select_role(healthy_roles, "Redis fetch took #{(duration * 1000).round(2)}ms")
+  end
+
+  private
+
+  def select_role(healthy_roles, source_info)
     role = if healthy_roles.any?
-      # Simple round robin based on current time or random for simplicity since we don't track state across requests here easily without a mutex on a shared list
-      # But we want to maintain the round-robin feel.
-      # Let's use a simple global counter or just sample for now if we don't want to overcomplicate.
-      # Actually, since we want to give the user what they had:
       @mutex.synchronize do
         @last_index ||= 0
         @last_index = (@last_index + 1) % healthy_roles.size
@@ -42,7 +78,7 @@ class DatabaseLoadBalancer
       :writing
     end
     
-    Rails.logger.info "DatabaseLoadBalancer: Selected role #{role} from healthy list: #{healthy_roles} (Redis fetch took #{(duration * 1000).round(2)}ms)"
+    Rails.logger.info "DatabaseLoadBalancer: Selected role #{role} from healthy list: #{healthy_roles} (#{source_info})"
     role
   end
 end
