@@ -28,27 +28,27 @@ The system implements a **Read/Write Split** architecture at the application lay
        User Request
             |
             v
-   +----------------------+
+   +-------------------------+
    |   ApplicationController |
    |    (Routing Logic)      |
-   +----------+-----------+
+   +----------+--------------+
               |
-    +---------+----------+
-    |                    |
-[Write Ops]          [Read Ops]
-    |                    |
-    v                    v
+    +---------+--------------+
+    |                        |
+[Write Ops]              [Read Ops]
+    |                        |
+    v                        v
 +---------+      +----------------------+            +--------------+
-| Primary |      | DatabaseLoadBalancer | <------+   |    Redis     |
-|   DB    |      |    (Selection)       | (Read)     |    (State)   |
+| Primary | <----| DatabaseLoadBalancer | <------+   |    Redis     |
+|   DB    | (FB) |    (Selection)       | (Read)     |    (State)   |
 +---------+      +--------+-------------+            +------+-------+
                           |                                 ^
                   +-------+-------+                         |
                   |               |                         | (Updates)
-                  v               v                  +------+-------+
-            +-----------+   +-----------+            | Health Check |
-            | Replica 1 |   | Replica 2 |            |    Service   |
-            +-----------+   +-----------+            +--------------+
+                  v               v                  +------+-----------+
+            +-----------+   +-----------+            |  Health Check    |
+            | Replica 1 |   | Replica 2 |            |    Service       |
+            +-----------+   +-----------+            +------------------+
 ```
 
 ### 1. Database Topology
