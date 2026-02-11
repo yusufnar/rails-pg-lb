@@ -23,27 +23,27 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
        User
          |
          v
-  +--------------+              +--------------+
-  |   Rails App  |              | Health Check |
-  | (Load Balancer)             |    Service   |
-  +------+-------+              +-------+------+
-         |                              |
-         | (1. Check Local Cache)       | (Updates State)
-         v                              v
-  +--------------+       (If Stale) +-----------------------+
-  |  Local Cache | ---------------->|         Redis         |
-  |  (TTL < 2s)  | <----------------|                       |
-  +------+-------+   (Update Cache) +-----------------------+
-         |
-         | (2. Get Healthy Role)
-         v
-  +--------------+              +--------------+
-  |   Replicas   |              |   Primary    |
-  |   (1 & 2)    |              |     DB       |
-  +--------------+              +--------------+
-         |                             ^
-         | (Replication)               | (Writes / Fallback)
-         +-----------------------------+
+  +----------------------+            +--------------+
+  |      Rails App       |            | Health Check |
+  |                      |            |    Service   |
+  |    (Writes) (Reads)  |            +-------+------+
+  |       |        |     |                    |
+  |       |    +---+-----------+              | (Updates)
+  |       |    | Load Balancer |              v
+  |       |    |    Logic      |<-----+ +-----------+
+  |       |    +-------+-------+      | |   Redis   |
+  +-------+------------+-------+      +-+-----------+
+          |            |                    ^
+          |      (Select Role)              | (State)
+          |            |                    |
+          v            v                    |
+  +-----------+    +----------+             |
+  |  Primary  |<---| Replicas |-------------+
+  |    DB     |    | (1 & 2)  |
+  +-----------+    +----------+
+        ^               |
+        |               |
+        +--(Replication)+
 ```
 
 ### 1. Database Topology
