@@ -21,8 +21,8 @@ class DatabaseLoadBalancer
           healthy_roles << role if status["healthy"]
         end
       end
-    rescue Redis::BaseConnectionError => e
-      Rails.logger.error "DatabaseLoadBalancer: Redis is down (#{e.message}). Falling back to all replicas."
+    rescue StandardError => e
+      Rails.logger.error "DatabaseLoadBalancer: Redis error (#{e.class}: #{e.message}). Falling back to all replicas."
       healthy_roles = @replica_roles
     end
     duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
