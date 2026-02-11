@@ -31,9 +31,9 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
       +-------+---------------------------+
       |                                   |
 +-----v------+ (Writes)          +--------v---------+ (Reads)
-|  Primary   |                   | DatabaseLoadBalancer |
-|     DB     |                   +--------+---------+
-+-----+-+----+                            |
+|  Primary   | <-----------------+ DatabaseLoadBalancer |
+|     DB     |  (Fallback if     +--------+---------+
++-----+-+----+   Replicas Down)           |
       | |                                 |
       | +---------------------+           | (Routes to Healthy Replica)
       | Replication           |           |
