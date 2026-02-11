@@ -19,6 +19,42 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
 
 ## 🏗 Architecture
 
+```text
+       +-------------+
+       | Internet/User|
+       +------+------+
+              |
+       +------v------+
+       |  Rails App  |
+       +------+------+
+              |
+      +-------+---------------------------+
+      |                                   |
++-----v------+ (Writes)          +--------v---------+ (Reads)
+|  Primary   |                   | DatabaseLoadBalancer |
+|     DB     |                   +--------+---------+
++-----+-+----+                            |
+      | |                                 |
+      | +---------------------+           | (Routes to Healthy Replica)
+      | Replication           |           |
+      |                       |     +-----v-----+
++-----v-----+          +------v-----+     |
+| Replica 1 |          | Replica 2  |     |
++-----------+          +------------+     |
+                                          |
+                                          |
+       +-----------+                      |
+       |   Redis   | <--------------------+
+       +-----+-----+
+             ^
+             | (Updates Health Status)
+             |
+      +------+-------+
+      | Health Check |
+      |   Service    |
+      +--------------+
+```
+
 ### 1. Database Topology
 The system consists of three PostgreSQL nodes:
 *   **Primary**: Handles all writes (`:writing` role).
