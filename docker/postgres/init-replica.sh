@@ -18,9 +18,10 @@ rm -rf "${PGDATA:?}"/*
 # Base backup from primary
 echo "Starting base backup..."
 # Drop slot if exists to avoid error on retry
-PGPASSWORD=password psql -h postgres-primary -U postgres -d postgres -c "SELECT pg_drop_replication_slot('replication_slot_$(hostname)');" || true
+SLOT_NAME="replication_slot_$(hostname | tr - _)"
+PGPASSWORD=password psql -h postgres-primary -U postgres -d postgres -c "SELECT pg_drop_replication_slot('${SLOT_NAME}');" || true
 
-pg_basebackup -h postgres-primary -D "$PGDATA" -U replication_user -v -P -X stream -C -S replication_slot_$(hostname) -R
+pg_basebackup -h postgres-primary -D "$PGDATA" -U replication_user -v -P -X stream -C -S "${SLOT_NAME}" -R
 
 echo "Backup complete. Starting PostgreSQL..."
 # Change ownership to postgres user

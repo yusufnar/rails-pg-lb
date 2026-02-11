@@ -1,7 +1,7 @@
 class DatabaseLoadBalancer
   include Singleton
 
-  CACHE_TTL = 1.second
+  CACHE_TTL = 2.second
 
   def initialize
     @replica_roles = [:replica_1, :replica_2]
