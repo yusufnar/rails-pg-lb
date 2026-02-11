@@ -28,6 +28,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: app_development
       POSTGRES_HOST_AUTH_METHOD: trust
+      
     volumes:
       - postgres-primary_data:/var/lib/postgresql/data
       - ./docker/postgres/init-primary.sh:/docker-entrypoint-initdb.d/init-primary.sh
@@ -41,6 +42,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       PGDATA: /var/lib/postgresql/data
+    hostname: postgres-replica1
     depends_on:
       - postgres-primary
     volumes:
@@ -55,6 +57,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       PGDATA: /var/lib/postgresql/data
+    hostname: postgres-replica2
     depends_on:
       - postgres-primary
     volumes:
