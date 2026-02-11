@@ -28,14 +28,14 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
   | (Load Balancer)             |    Service   |
   +------+-------+              +-------+------+
          |                              |
-         | (Reads State)                | (Updates State)
+         | (1. Check Local Cache)       | (Updates State)
          v                              v
-  +--------------------------------------------+
-  |                   Redis                    |
-  +--------------------------------------------+
-
+  +--------------+       (If Stale) +-----------------------+
+  |  Local Cache | ---------------->|         Redis         |
+  |  (TTL < 2s)  | <----------------|                       |
+  +------+-------+   (Update Cache) +-----------------------+
          |
-         | (Routes Reads)
+         | (2. Get Healthy Role)
          v
   +--------------+              +--------------+
   |   Replicas   |              |   Primary    |
