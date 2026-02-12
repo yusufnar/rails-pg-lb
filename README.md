@@ -25,30 +25,46 @@ The system implements a **Read/Write Split** architecture at the application lay
 *   **Reads (GET, HEAD)**: Routed via the `DatabaseLoadBalancer` to available healthy replicas.
 
 ```text
-       User Request
-            |
-            v
-   +-------------------------+
-   |   ApplicationController |
-   |    (Routing Logic)      |
-   +----------+--------------+
-              |
-    +---------+--------------+
-    |                        |
-[Write Ops]              [Read Ops]
-    |                        |
-    v                        v
-+---------+      +----------------------+            +--------------+
-| Primary | <----| DatabaseLoadBalancer | <------+   |    Redis     |
-|   DB    | (FB) |    (Selection)       | (Read)     |    (State)   |
-+---------+      +--------+-------------+            +------+-------+
-                          |                                 ^
-                  +-------+-------+                         |
-                  |               |                         | (Updates)
-                  v               v                  +------+-----------+
-            +-----------+   +-----------+            |  Health Check    |
-            | Replica 1 |   | Replica 2 |            |    Service       |
-            +-----------+   +-----------+            +------------------+
+                          ┌──────────────────────┐
+                          │    User Request      │
+                          └──────────┬───────────┘
+                                     │
+                          ┌──────────▼────────────┐
+                          │ ApplicationController │
+                          │   (around_action)     │
+                          └────┬────────────┬─────┘
+                               │            │
+                          Write Ops     Read Ops
+                          (POST/PUT     (GET/HEAD)
+                           DELETE)          │
+                               │    ┌───────▼─────────┐
+                               │    │  Database       │◄── Round Robin
+                               │    │  LoadBalancer   │    Selection
+                               │    └──┬─────────┬────┘
+                               │       │         │
+                     ┌─────────▼───┐   │         │
+                     │   Primary   │   │         │
+                     │   (Write)   │◄──┘         │    Fallback: No healthy
+                     │             │  Fallback   │    replicas → Primary
+                     └──────┬──────┘             │
+                            │                    │
+                      Async │ WAL          ┌─────▼─────┐
+                  Streaming │ Replication  │           │
+                            │         ┌───▼───┐ ┌─────▼─┐
+                            ├────────►│Rep. 1 │ │Rep. 2 │
+                            │         └───┬───┘ └───┬───┘
+                            │             │         │
+                  ┌─────────┴─────────────┴─────────┘
+                  │
+         ┌────────▼─────────┐       ┌──────────┐
+         │  Health Check    │──────►│  Redis   │
+         │  Service (1s)    │       │  (State) │
+         └──────────────────┘       └────┬─────┘
+                                         │
+                              LoadBalancer reads
+                              health status from
+                              Redis (with Circuit
+                              Breaker protection)
 ```
 
 ### 1. Database Topology
