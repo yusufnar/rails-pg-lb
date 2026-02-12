@@ -35,7 +35,11 @@ class DatabaseLoadBalancer
     start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     
     # Circuit Breaker: Skip Redis if we had a recent failure
-    if @redis_last_failure_at && (Time.current - @redis_last_failure_at) < @failure_backoff
+    circuit_open = @mutex.synchronize do
+      @redis_last_failure_at && (Time.current - @redis_last_failure_at) < @failure_backoff
+    end
+
+    if circuit_open
       healthy_roles = @replica_roles
       duration = 0
     else
@@ -48,7 +52,7 @@ class DatabaseLoadBalancer
           end
         end
       rescue StandardError => e
-        @redis_last_failure_at = Time.current
+        @mutex.synchronize { @redis_last_failure_at = Time.current }
         Rails.logger.error "DatabaseLoadBalancer: Redis error (#{e.class}: #{e.message}). Circuit breaker opened for #{@failure_backoff}s. Falling back to all replicas."
         healthy_roles = @replica_roles
       end
