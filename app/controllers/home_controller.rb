@@ -31,13 +31,13 @@ class HomeController < ApplicationController
         read_timeout: 0.1
       )
       @db_statuses = {}
-      [:primary, :replica_1, :replica_2].each do |role|
+      [ :primary, :replica_1, :replica_2 ].each do |role|
         status_json = redis.get("db_status:#{role}")
         @db_statuses[role] = status_json ? JSON.parse(status_json) : { "healthy" => false, "message" => "No data" }
       end
     rescue StandardError => e
       Rails.logger.error "HomeController: Redis error (#{e.class}: #{e.message})"
-      @db_statuses = [:primary, :replica_1, :replica_2].each_with_object({}) do |role, hash|
+      @db_statuses = [ :primary, :replica_1, :replica_2 ].each_with_object({}) do |role, hash|
         hash[role] = { "healthy" => false, "message" => "Redis Unavailable" }
       end
     end

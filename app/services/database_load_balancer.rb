@@ -4,7 +4,7 @@ class DatabaseLoadBalancer
   CACHE_TTL = 2.second
 
   def initialize
-    @replica_roles = [:replica_1, :replica_2]
+    @replica_roles = [ :replica_1, :replica_2 ]
     @mutex = Mutex.new
     @redis = Redis.new(
       url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0"),
@@ -33,7 +33,7 @@ class DatabaseLoadBalancer
     # 2. Fetch from Redis (if not cached)
     healthy_roles = []
     start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-    
+
     # Circuit Breaker: Skip Redis if we had a recent failure
     circuit_open = @mutex.synchronize do
       @redis_last_failure_at && (Time.current - @redis_last_failure_at) < @failure_backoff
@@ -58,7 +58,7 @@ class DatabaseLoadBalancer
       end
       duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
     end
-    
+
     # 3. Update Cache
     @mutex.synchronize do
       @cached_healthy_roles = healthy_roles
@@ -81,7 +81,7 @@ class DatabaseLoadBalancer
     else
       :writing
     end
-    
+
     Rails.logger.info "DatabaseLoadBalancer: Selected role #{role} from healthy list: #{healthy_roles} (#{source_info})"
     role
   end
