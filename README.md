@@ -129,16 +129,20 @@ end
 
 ## 🧪 Testing Scenarios
 
-The repository includes several scripts to simulate failures and verifying the load balancer's behavior:
+The repository includes several scripts to simulate failures and verify the load balancer's behavior:
 
 | Script | Description |
 | :--- | :--- |
 | `test_replica1_down.sh` | Stops `postgres-replica1` and verifies traffic shifts to `replica2`. |
-| `test_replica1_lag.sh` | Pauses WAL replay on `replica2` to simulate lag > 1s. |
+| `test_replica1_lag.sh` | Pauses WAL replay on `replica1` to simulate lag > 1s. |
+| `test_both_replicas_down.sh` | Stops both replicas to verify fallback to Primary for reads. |
+| `test_both_replicas_lag.sh` | Pauses WAL replay on both replicas to simulate lag > 1s on all read nodes. |
 | `test_redis_down.sh` | Stops Redis to test the Circuit Breaker functionality. |
 | `test_primary_down.sh` | Simulates a primary failure. Reads continue via replicas, but writes will fail. |
-| `test_both_replicas_down.sh` | Stops both replicas to verify fallback to Primary for reads. |
+| `test_staggered_recovery.sh` | Stops both replicas, then recovers them one at a time to test gradual recovery. |
 | `generate_traffic.sh` | Sends concurrent requests to test load distribution. |
+| `run_all_tests.sh` | Runs all test scripts sequentially with status reporting. Usage: `./run_all_tests.sh <duration>` |
+| `monitor_lb.sh` | Live-monitors the load balancer status endpoint (1s interval) with colored output. |
 
 ## 📂 Project Structure
 
