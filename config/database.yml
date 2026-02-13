@@ -22,9 +22,20 @@ development:
     replica: true
 
 test:
-  <<: *default
-  database: app_test
-  host: postgres-primary
+  primary:
+    <<: *default
+    database: app_test
+    host: <%= ENV.fetch("PRIMARY_DB_HOST") { "postgres-primary" } %>
+  replica_1:
+    <<: *default
+    database: app_test
+    host: <%= ENV.fetch("REPLICA1_DB_HOST") { "postgres-primary" } %>
+    replica: true
+  replica_2:
+    <<: *default
+    database: app_test
+    host: <%= ENV.fetch("REPLICA2_DB_HOST") { "postgres-primary" } %>
+    replica: true
 
 production:
   primary:
