@@ -1,6 +1,6 @@
 #!/bin/bash
-# test_replica_lag.sh - Simulate replication lag on postgres-replica1
-# Usage: ./test_replica_lag.sh [duration_seconds]
+# test_replica1_lag.sh - Simulate replication lag on postgres-replica1
+# Usage: ./test_replica1_lag.sh [duration_seconds]
 
 DURATION=${1:-10}
 

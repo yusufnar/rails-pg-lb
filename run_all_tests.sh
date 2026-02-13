@@ -13,9 +13,9 @@ fi
 DURATION=$1
 
 TESTS=(
-  "./test_replica_lag.sh $DURATION"
+  "./test_replica1_lag.sh $DURATION"
   "./test_both_replicas_lag.sh $DURATION"
-  "./test_replica_down.sh $DURATION"
+  "./test_replica1_down.sh $DURATION"
   "./test_both_replicas_down.sh $DURATION"
   "./test_redis_down.sh $DURATION"
 )
@@ -45,6 +45,10 @@ for test_cmd in "${TESTS[@]}"; do
   else
     echo "[$(date '+%H:%M:%S')] ❌ Failed (exit code: $exit_code): $test_cmd"
   fi
+
+  # Wait 2 seconds between tests
+  echo "[$(date '+%H:%M:%S')] ⏸ Waiting..."
+  sleep 2
 done
 
 echo ""

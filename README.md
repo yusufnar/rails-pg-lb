@@ -133,8 +133,8 @@ The repository includes several scripts to simulate failures and verifying the l
 
 | Script | Description |
 | :--- | :--- |
-| `test_replica_down.sh` | Stops `postgres-replica1` and verifies traffic shifts to `replica2`. |
-| `test_replica_lag.sh` | Pauses WAL replay on `replica2` to simulate lag > 1s. |
+| `test_replica1_down.sh` | Stops `postgres-replica1` and verifies traffic shifts to `replica2`. |
+| `test_replica1_lag.sh` | Pauses WAL replay on `replica2` to simulate lag > 1s. |
 | `test_redis_down.sh` | Stops Redis to test the Circuit Breaker functionality. |
 | `test_primary_down.sh` | Simulates a primary failure. Reads continue via replicas, but writes will fail. |
 | `test_both_replicas_down.sh` | Stops both replicas to verify fallback to Primary for reads. |

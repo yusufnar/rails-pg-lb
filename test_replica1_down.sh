@@ -1,6 +1,6 @@
 #!/bin/bash
-# test_replica_down.sh - Simulate a replica container failure and recovery
-# Usage: ./test_replica_down.sh [duration_seconds]
+# test_replica1_down.sh - Simulate a replica container failure and recovery
+# Usage: ./test_replica1_down.sh [duration_seconds]
 
 DURATION=${1:-10}
 REPLICA="postgres-replica1"
