@@ -33,7 +33,7 @@ while true; do
 
   LINE=$(echo "$RESPONSE" | jq -r '
     def status_icon: if .healthy then "✓" else "✖" end;
-    def lag_val: (.lag_ms // 0) | if . >= 1000 then ((. / 1000 | floor | tostring) + "s") else (tostring + "ms") end;
+    def lag_val: (.lag_ms // 0) | if . >= 1000 then ((. / 100 | floor / 10 | tostring) + "s") else (tostring + "ms") end;
     [
       (.connection_info.server_ip // "N/A"),
       (.connection_info.connected_host // "N/A"),
