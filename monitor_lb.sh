@@ -15,12 +15,12 @@ BOLD="\033[1m"
 RESET="\033[0m"
 
 # Shared format
-FMT="%-10s %-9s %-18s %-20s %-12s %-12s %-12s %-6s %-6s %-6s\n"
+FMT="%-10s %-18s %-20s %-12s %-12s %-12s %-6s %-6s %-6s\n"
 
 # Print header
 printf "${BOLD}${CYAN}${FMT}${RESET}" \
-  "TIME" "ROLE" "SERVER_IP" "DB_HOST" "PRIMARY" "REPLICA_1" "REPLICA_2" "LAG_P" "LAG_R1" "LAG_R2"
-echo -e "${DIM}$(printf '%.0s─' {1..120})${RESET}"
+  "TIME" "SERVER_IP" "DB_HOST" "PRIMARY" "REPLICA_1" "REPLICA_2" "LAG_P" "LAG_R1" "LAG_R2"
+echo -e "${DIM}$(printf '%.0s─' {1..110})${RESET}"
 
 while true; do
   RESPONSE=$(curl -s --max-time 3 "$URL" 2>/dev/null || echo "CURL_FAILED")
@@ -35,7 +35,6 @@ while true; do
     def status_icon: if .healthy then "✓" else "✖" end;
     def lag_val: (.lag_ms // 0 | tostring) + "ms";
     [
-      (.connection_info.current_role),
       (.connection_info.server_ip // "N/A"),
       (.connection_info.connected_host // "N/A"),
       (.db_statuses.primary | status_icon),
@@ -53,7 +52,7 @@ while true; do
     continue
   fi
 
-  IFS=$'\t' read -r ROLE SERVER_IP DB_HOST P_ST R1_ST R2_ST P_LAG R1_LAG R2_LAG <<< "$LINE"
+  IFS=$'\t' read -r SERVER_IP DB_HOST P_ST R1_ST R2_ST P_LAG R1_LAG R2_LAG <<< "$LINE"
 
   # Pad plain text first, then wrap with color (ANSI codes break printf width)
   color_pad() {
@@ -67,8 +66,8 @@ while true; do
   [[ "$R1_ST" == "✓" ]] && R1_FMT=$(color_pad "HEALTHY" "$GREEN" 12) || R1_FMT=$(color_pad "DOWN" "$RED" 12)
   [[ "$R2_ST" == "✓" ]] && R2_FMT=$(color_pad "HEALTHY" "$GREEN" 12) || R2_FMT=$(color_pad "DOWN" "$RED" 12)
 
-  printf "%-10s %-9s %-18s %-20s %b %b %b %-6s %-6s %-6s\n" \
-    "$(date '+%H:%M:%S')" "$ROLE" "$SERVER_IP" "$DB_HOST" "$P_FMT" "$R1_FMT" "$R2_FMT" "$P_LAG" "$R1_LAG" "$R2_LAG"
+  printf "%-10s %-18s %-20s %b %b %b %-6s %-6s %-6s\n" \
+    "$(date '+%H:%M:%S')" "$SERVER_IP" "$DB_HOST" "$P_FMT" "$R1_FMT" "$R2_FMT" "$P_LAG" "$R1_LAG" "$R2_LAG"
 
   sleep "$INTERVAL"
 done
