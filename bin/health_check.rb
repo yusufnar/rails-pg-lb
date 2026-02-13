@@ -21,7 +21,14 @@ DB_CONFIG = {
   dbname: 'app_development'
 }
 
-$redis = Redis.new(url: REDIS_URL)
+$redis = nil
+
+def redis_client
+  $redis ||= Redis.new(url: REDIS_URL)
+rescue => e
+  puts "[#{Time.now}] WARN: Redis connection failed: #{e.message}"
+  nil
+end
 
 def check_node(host, role_expected)
   begin
@@ -95,10 +102,23 @@ loop do
     status = check_node(host, role_name == :primary ? :primary : :replica)
     new_status_json = status.to_json
     key = "db_status:#{role_name}"
-    current_status_json = $redis.get(key)
 
-    if new_status_json != current_status_json
-      $redis.set(key, new_status_json)
+    begin
+      r = redis_client
+      if r
+        current_status_json = r.get(key)
+        if new_status_json != current_status_json
+          r.set(key, new_status_json)
+        end
+      else
+        puts "[#{Time.now}] WARN: Redis unavailable, skipping status update for #{role_name}"
+      end
+    rescue Redis::CannotConnectError, RedisClient::CannotConnectError, SocketError => e
+      puts "[#{Time.now}] WARN: Redis error for #{role_name}: #{e.message}"
+      $redis = nil  # Reset so it reconnects next cycle
+    rescue => e
+      puts "[#{Time.now}] WARN: Unexpected Redis error for #{role_name}: #{e.message}"
+      $redis = nil
     end
     # Debug output
     msg = "[#{Time.now}] #{role_name} (#{host}): #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'}"
