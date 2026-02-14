@@ -1,0 +1,60 @@
+yusufnar@yusufs-MacBook-Pro rails-db-lb % ./run_all_tests.sh 5
+
+==========================================
+▶ Starting: ./test_replica1_lag.sh 5
+==========================================
+[09:42:09] ⏳ Running: ./test_replica1_lag.sh 5
+[09:42:11] ⏳ Running: ./test_replica1_lag.sh 5
+[09:42:13] ⏳ Running: ./test_replica1_lag.sh 5
+[09:42:16] ⏳ Running: ./test_replica1_lag.sh 5
+[09:42:18] ✅ Completed: ./test_replica1_lag.sh 5
+[09:42:18] ⏸ Waiting...
+
+==========================================
+▶ Starting: ./test_both_replicas_lag.sh 5
+==========================================
+[09:42:20] ⏳ Running: ./test_both_replicas_lag.sh 5
+[09:42:22] ⏳ Running: ./test_both_replicas_lag.sh 5
+[09:42:24] ⏳ Running: ./test_both_replicas_lag.sh 5
+[09:42:26] ⏳ Running: ./test_both_replicas_lag.sh 5
+[09:42:28] ✅ Completed: ./test_both_replicas_lag.sh 5
+[09:42:28] ⏸ Waiting...
+
+==========================================
+▶ Starting: ./test_replica1_down.sh 5
+==========================================
+[09:42:30] ⏳ Running: ./test_replica1_down.sh 5
+[09:42:32] ⏳ Running: ./test_replica1_down.sh 5
+[09:42:34] ⏳ Running: ./test_replica1_down.sh 5
+[09:42:36] ⏳ Running: ./test_replica1_down.sh 5
+[09:42:38] ⏳ Running: ./test_replica1_down.sh 5
+[09:42:40] ⏳ Running: ./test_replica1_down.sh 5
+[09:42:42] ✅ Completed: ./test_replica1_down.sh 5
+[09:42:42] ⏸ Waiting...
+
+==========================================
+▶ Starting: ./test_both_replicas_down.sh 5
+==========================================
+[09:42:44] ⏳ Running: ./test_both_replicas_down.sh 5
+[09:42:46] ⏳ Running: ./test_both_replicas_down.sh 5
+[09:42:48] ⏳ Running: ./test_both_replicas_down.sh 5
+[09:42:50] ⏳ Running: ./test_both_replicas_down.sh 5
+[09:42:52] ⏳ Running: ./test_both_replicas_down.sh 5
+[09:42:54] ⏳ Running: ./test_both_replicas_down.sh 5
+[09:42:56] ✅ Completed: ./test_both_replicas_down.sh 5
+[09:42:56] ⏸ Waiting...
+
+==========================================
+▶ Starting: ./test_redis_down.sh 5
+==========================================
+[09:42:58] ⏳ Running: ./test_redis_down.sh 5
+[09:43:00] ⏳ Running: ./test_redis_down.sh 5
+[09:43:02] ⏳ Running: ./test_redis_down.sh 5
+[09:43:04] ⏳ Running: ./test_redis_down.sh 5
+[09:43:06] ✅ Completed: ./test_redis_down.sh 5
+[09:43:06] ⏸ Waiting...
+
+==========================================
+🏁 All tests completed.
+==========================================
+yusufnar@yusufs-MacBook-Pro rails-db-lb % 
