@@ -58,7 +58,8 @@ class HomeController < ApplicationController
             current_shard: ActiveRecord::Base.current_shard,
             prevent_writes: ActiveRecord::Base.connected_to?(role: :reading),
             db_time: @db_time,
-            redis_routing_time_ms: Thread.current[:redis_routing_duration] ? (Thread.current[:redis_routing_duration] * 1000).round(3) : nil
+            redis_routing_time_ms: Thread.current[:redis_routing_duration] ? (Thread.current[:redis_routing_duration] * 1000).round(3) : 0,
+            source: (Thread.current[:redis_routing_duration] || 0) == 0 ? "cache" : "redis"
           },
           db_statuses: @db_statuses
         }
