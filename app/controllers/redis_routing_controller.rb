@@ -6,8 +6,8 @@ class RedisRoutingController < ApplicationController
     cache_ttl = DatabaseLoadBalancer::CACHE_TTL
     lb = DatabaseLoadBalancer.instance
 
-    # Determine source: cache hit vs Redis fetch
-    source = routing_time_ms == 0 ? "cache" : "redis"
+    # Determine source: cache hit, Redis fetch, or yml fallback
+    source = Thread.current[:lb_source] || "unknown"
 
     render json: {
       timestamp: Time.current.strftime("%Y-%m-%d %H:%M:%S.%L"),

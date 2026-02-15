@@ -18,6 +18,8 @@ class DatabaseLoadBalancer
   end
 
   def reading_role
+    Thread.current[:lb_source] = nil
+
     # 1. Check Cache
     cached_roles = @mutex.synchronize do
       if @last_checked_at && (Time.current - @last_checked_at) < CACHE_TTL
@@ -27,6 +29,7 @@ class DatabaseLoadBalancer
 
     if cached_roles
       Thread.current[:redis_routing_duration] = 0
+      Thread.current[:lb_source] = "cache"
       return select_role(cached_roles, "cache hit")
     end
 
@@ -42,6 +45,7 @@ class DatabaseLoadBalancer
     if circuit_open
       healthy_roles = @replica_roles
       duration = 0
+      Thread.current[:lb_source] = "yml"
     else
       begin
         @replica_roles.each do |role|
@@ -55,6 +59,7 @@ class DatabaseLoadBalancer
         @mutex.synchronize { @redis_last_failure_at = Time.current }
         Rails.logger.error "DatabaseLoadBalancer: Redis error (#{e.class}: #{e.message}). Circuit breaker opened for #{@failure_backoff}s. Falling back to all replicas."
         healthy_roles = @replica_roles
+        Thread.current[:lb_source] = "yml"
       end
       duration = Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time
     end
@@ -66,6 +71,8 @@ class DatabaseLoadBalancer
     end
 
     Thread.current[:redis_routing_duration] = duration
+    # Only set to 'redis' if not already set (e.g. to 'yml' by exception handler)
+    Thread.current[:lb_source] ||= "redis"
     select_role(healthy_roles, "Redis fetch took #{(duration * 1000).round(2)}ms")
   end
 
