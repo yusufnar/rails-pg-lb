@@ -55,7 +55,7 @@ def check_node(host, role_expected)
           WITH stats AS (
               SELECT 
                   pg_last_wal_receive_lsn() as receive_lsn,
-                  (pg_last_wal_receive_lsn() IS NULL OR pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn()) as is_sync,
+                  (pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn()) as is_sync,
                   COALESCE(EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())), 0) as lag_s
           )
           SELECT 
