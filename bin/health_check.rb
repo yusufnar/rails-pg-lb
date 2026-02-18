@@ -94,9 +94,9 @@ def check_node(host, role_expected)
     end
     
     conn.close
-    status
+    status.merge(role_expected: role_expected, is_recovery: is_recovery)
   rescue => e
-    { role: 'unknown', healthy: false, message: e.message }
+    { role: 'unknown', healthy: false, message: e.message, role_expected: role_expected, is_recovery: nil }
   end
 end
 
@@ -126,6 +126,7 @@ loop do
     end
     # Debug output
     msg = "[#{Time.now}] #{role_name} (#{host}): #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'}"
+    msg += " (Expected: #{status[:role_expected]}, Recovery: #{status[:is_recovery]})"
     msg += " (Lag: #{status[:lag_ms] || 'N/A'}ms)"
     msg += " Details: #{status[:message]}" if status[:message]
     puts msg
