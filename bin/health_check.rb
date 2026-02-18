@@ -54,10 +54,12 @@ def check_node(host, role_expected)
         query = <<~SQL
           WITH stats AS (
               SELECT 
-                  pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() as is_sync,
+                  pg_last_wal_receive_lsn() as receive_lsn,
+                  (pg_last_wal_receive_lsn() IS NULL OR pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn()) as is_sync,
                   COALESCE(EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())), 0) as lag_s
           )
           SELECT 
+              receive_lsn,
               is_sync,
               ROUND(lag_s::numeric, 2) as lag_s,
               CASE WHEN is_sync THEN 0 ELSE ROUND(lag_s::numeric, 2) END as real_lag_s
@@ -68,6 +70,7 @@ def check_node(host, role_expected)
         lag_s = result['lag_s'].to_f
         real_lag_s = result['real_lag_s'].to_f
         is_sync = result['is_sync'] == 't'
+        receive_lsn = result['receive_lsn']
         
         healthy = !is_paused && (real_lag_s <= MAX_LAG_SECONDS)
         
@@ -77,6 +80,7 @@ def check_node(host, role_expected)
         message << "Syncing..." if !is_sync && !is_paused
         message << "Raw Lag: #{lag_s}s"
         message << "Real Lag: #{real_lag_s}s"
+        message << "Receive LSN: #{receive_lsn || 'NULL'}"
         
         status = { 
           role: 'replica', 
