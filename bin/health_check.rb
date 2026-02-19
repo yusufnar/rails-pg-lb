@@ -57,19 +57,36 @@ def check_node(host, role_expected)
                   pg_last_wal_receive_lsn() as receive_lsn,
                   (pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn()) as is_sync,
                   COALESCE(EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())), 0) as lag_s
+          ),
+          wal_recv AS (
+              SELECT
+                  EXTRACT(EPOCH FROM (now() - last_msg_receipt_time)) as last_msg_lag_s,
+                  EXTRACT(EPOCH FROM (now() - last_msg_send_time)) as last_msg_send_lag_s,                  
+                  EXTRACT(EPOCH FROM (now() - latest_end_time)) as last_wal_end_lag_s,
+                  EXTRACT(EPOCH FROM (last_msg_receipt_time - last_msg_send_time)) as transport_lag_s
+              FROM pg_stat_wal_receiver
           )
           SELECT 
               receive_lsn,
               is_sync,
-              ROUND(lag_s::numeric, 2) as lag_s,
-              CASE WHEN is_sync THEN 0 ELSE ROUND(lag_s::numeric, 2) END as real_lag_s
-          FROM stats;
+              ROUND(lag_s::numeric, 3) as lag_s,
+              CASE WHEN is_sync THEN 0 ELSE ROUND(lag_s::numeric, 3) END as real_lag_s,
+              ROUND(last_msg_lag_s::numeric, 3) as last_msg_lag_s,
+              ROUND(last_wal_end_lag_s::numeric, 3) as last_wal_end_lag_s,
+              ROUND(transport_lag_s::numeric, 3) as transport_lag_s,
+              ROUND(last_msg_send_lag_s::numeric, 3) as last_msg_send_lag_s
+          FROM stats
+          LEFT JOIN wal_recv ON true;
         SQL
         
         result = conn.exec(query).collect { |row| row }[0]
         lag_s = result['lag_s'].to_f
         real_lag_s = result['real_lag_s'].to_f
         is_sync = result['is_sync'] == 't'
+        last_msg_lag_s = result['last_msg_lag_s']
+        last_wal_end_lag_s = result['last_wal_end_lag_s']
+        transport_lag_s = result['transport_lag_s']
+        last_msg_send_lag_s = result['last_msg_send_lag_s']
         receive_lsn = result['receive_lsn']
         
         healthy = !is_paused && (real_lag_s <= MAX_LAG_SECONDS)
@@ -80,6 +97,10 @@ def check_node(host, role_expected)
         message << "Syncing..." if !is_sync && !is_paused
         message << "Raw Lag: #{lag_s}s"
         message << "Real Lag: #{real_lag_s}s"
+        message << "Msg Lag: #{last_msg_lag_s}s" if last_msg_lag_s
+        message << "WAL End Lag: #{last_wal_end_lag_s}s" if last_wal_end_lag_s
+        message << "Transport Lag: #{transport_lag_s}s" if transport_lag_s
+        message << "Msg Send Lag: #{last_msg_send_lag_s}s" if last_msg_send_lag_s
         message << "Receive LSN: #{receive_lsn || 'NULL'}"
         
         status = { 
