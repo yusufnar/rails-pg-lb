@@ -54,7 +54,8 @@ def check_node(host, role_expected)
         query = <<~SQL
           WITH stats AS (
               SELECT 
-                  pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() as is_sync,
+                  pg_last_wal_receive_lsn() as receive_lsn,
+                  (pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn()) as is_sync,
                   COALESCE(EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())), 0) as lag_s
           ),
           wal_recv AS (
@@ -66,6 +67,7 @@ def check_node(host, role_expected)
               FROM pg_stat_wal_receiver
           )
           SELECT 
+              receive_lsn,
               is_sync,
               ROUND(lag_s::numeric, 3) as lag_s,
               CASE WHEN is_sync THEN 0 ELSE ROUND(lag_s::numeric, 3) END as real_lag_s,
@@ -85,6 +87,7 @@ def check_node(host, role_expected)
         last_wal_end_lag_s = result['last_wal_end_lag_s']
         transport_lag_s = result['transport_lag_s']
         last_msg_send_lag_s = result['last_msg_send_lag_s']
+        receive_lsn = result['receive_lsn']
         
         healthy = !is_paused && (real_lag_s <= MAX_LAG_SECONDS)
         
@@ -98,6 +101,7 @@ def check_node(host, role_expected)
         message << "WAL End Lag: #{last_wal_end_lag_s}s" if last_wal_end_lag_s
         message << "Transport Lag: #{transport_lag_s}s" if transport_lag_s
         message << "Msg Send Lag: #{last_msg_send_lag_s}s" if last_msg_send_lag_s
+        message << "Receive LSN: #{receive_lsn || 'NULL'}"
         
         status = { 
           role: 'replica', 
@@ -111,9 +115,9 @@ def check_node(host, role_expected)
     end
     
     conn.close
-    status
+    status.merge(role_expected: role_expected, is_recovery: is_recovery)
   rescue => e
-    { role: 'unknown', healthy: false, message: e.message }
+    { role: 'unknown', healthy: false, message: e.message, role_expected: role_expected, is_recovery: nil }
   end
 end
 
@@ -142,7 +146,8 @@ loop do
       $redis = nil
     end
     # Debug output
-    msg = "[#{Time.now}] #{role_name}: #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'}"
+    msg = "[#{Time.now}] #{role_name} (#{host}): #{status[:healthy] ? 'HEALTHY' : 'UNHEALTHY'}"
+    msg += " (Expected: #{status[:role_expected]}, Recovery: #{status[:is_recovery]})"
     msg += " (Lag: #{status[:lag_ms] || 'N/A'}ms)"
     msg += " Details: #{status[:message]}" if status[:message]
     puts msg

@@ -27,8 +27,8 @@ class HomeController < ApplicationController
     begin
       redis = Redis.new(
         url: ENV.fetch("REDIS_URL", "redis://localhost:6379/0"),
-        connect_timeout: 0.1,
-        read_timeout: 0.1
+        connect_timeout: 0.5,
+        read_timeout: 0.5
       )
       @db_statuses = {}
       [ :primary, :replica_1, :replica_2 ].each do |role|
