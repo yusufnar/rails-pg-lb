@@ -1,4 +1,8 @@
-tmp/*
+/tmp/*
+!/tmp/pids/
+!/tmp/storage/
+!/tmp/.keep
+!/tmp/**/.keep
 log/*
 
 # Ignore master key for security
