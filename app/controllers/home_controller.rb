@@ -42,28 +42,23 @@ class HomeController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: {
-          last_record: {
-            content: @content,
-            created_at: @created_at
-          },
-          connection_info: {
-            connected_host: ApplicationRecord.connection_pool.db_config.host,
-            server_ip: @server_ip,
-            app_ip: @app_ip,
-            current_role: ActiveRecord::Base.current_role,
-            current_shard: ActiveRecord::Base.current_shard,
-            prevent_writes: ActiveRecord::Base.connected_to?(role: :reading),
-            db_time: @db_time,
-            redis_routing_time_ms: Thread.current[:redis_routing_duration] ? (Thread.current[:redis_routing_duration] * 1000).round(3) : 0,
-            source: Thread.current[:lb_source] || "unknown"
-          },
-          db_statuses: @db_statuses
-        }
-      end
-    end
+    render json: {
+      last_record: {
+        content: @content,
+        created_at: @created_at
+      },
+      connection_info: {
+        connected_host: ApplicationRecord.connection_pool.db_config.host,
+        server_ip: @server_ip,
+        app_ip: @app_ip,
+        current_role: ActiveRecord::Base.current_role,
+        current_shard: ActiveRecord::Base.current_shard,
+        prevent_writes: ActiveRecord::Base.connected_to?(role: :reading),
+        db_time: @db_time,
+        redis_routing_time_ms: Thread.current[:redis_routing_duration] ? (Thread.current[:redis_routing_duration] * 1000).round(3) : 0,
+        source: Thread.current[:lb_source] || "unknown"
+      },
+      db_statuses: @db_statuses
+    }
   end
 end
