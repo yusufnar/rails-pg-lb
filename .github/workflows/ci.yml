@@ -81,6 +81,17 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Prepare database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          PRIMARY_DB_HOST: localhost
+          REPLICA1_DB_HOST: localhost
+          REPLICA2_DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+        run: bin/rails db:prepare
+
       - name: Run tests
         env:
           RAILS_ENV: test
@@ -118,6 +129,17 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Prepare database
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          PRIMARY_DB_HOST: localhost
+          REPLICA1_DB_HOST: localhost
+          REPLICA2_DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+        run: bin/rails db:prepare
 
       - name: Run System Tests
         env:
