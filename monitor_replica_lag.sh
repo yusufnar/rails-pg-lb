@@ -29,7 +29,7 @@ FROM stats
 LEFT JOIN wal_recv ON true;"
 
 echo "Starting replica lag monitor... Press Ctrl+C to stop."
-sleep 1
+sleep 1 # Slight delay before freezing the screen
 
 printf "%-10s %-12s %-12s %-7s %-12s %-7s %-10s %-13s %-11s %-15s %-14s\n" "TIME" "REPLICA" "RECEIVE_LSN" "IS_SYNC" "STATUS" "LAG_S" "REAL_LAG_S" "RECEIPT_LAG_S" "SEND_LAG_S" "TRANSPORT_LAG_S" "WAL_END_LAG_S"
 printf '%.s─' {1..130}
