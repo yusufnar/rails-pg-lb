@@ -1,28 +1,33 @@
 # Rails Database Load Balancer
 
-A Ruby on Rails application demonstrating advanced database load balancing techniques with **PostgreSQL** read replicas, **Redis**-based health tracking, and custom **Application Layer** routing logic.
+A Ruby on Rails application demonstrating advanced database load balancing techniques with **PostgreSQL** read replicas, **Redis**-based health tracking, and a custom **application-layer** routing strategy.
 
 ## 🚀 Key Features
 
-*   **Custom Load Balancer**: Implemented in Ruby (`DatabaseLoadBalancer` service), handling intelligent read/write splitting.
-*   **Health Aware Routing**: Automatically routes traffic away from unhealthy or lagging replicas.
-*   **Circuit Breaker Pattern**: Protects the application from Redis failures by temporarily backing off and defaulting to safe routing.
-*   **Replica Lag Detection**: Monitors replication lag and pauses routing to replicas exceeding the threshold (1s).
-*   **Infrastructure as Code**: Fully dockerized setup with Primary, 2 Replicas, Redis, and a dedicated Health Check service.
+| Feature | Details |
+| :--- | :--- |
+| **Read/Write Splitting** | Writes go to Primary; reads are distributed across healthy replicas. |
+| **Health-Aware Routing** | Replicas are automatically excluded when they lag >1s, lose connectivity, or become zombies. |
+| **Circuit Breaker** | If Redis is unavailable, the load balancer backs off for 10s and falls back to all replicas. |
+| **Local Caching** | Healthy replica list is cached for 2s to minimize Redis round-trips on every request. |
+| **Zombie Detection** | A replica is marked unhealthy if `last_msg_receipt_lag_s > 20s` on a streaming connection. |
+| **Infrastructure as Code** | Fully Dockerized: Primary, 2 Replicas, Redis, Rails app, and a Health Check sidecar. |
 
 ## 🛠 Tech Stack
 
-*   **Framework**: Ruby on Rails 8.1.2
-*   **Database**: PostgreSQL 17 (1 Primary + 2 Replicas)
-*   **Caching/State**: Redis 7
-*   **Containerization**: Docker & Docker Compose
+| Layer | Technology |
+| :--- | :--- |
+| Framework | Ruby on Rails 8.1.2 |
+| Database | PostgreSQL 17 — 1 Primary + 2 Streaming Replicas |
+| State / Cache | Redis 7 |
+| Containerization | Docker & Docker Compose |
 
 ## 🏗 Architecture
 
-The system implements a **Read/Write Split** architecture at the application layer:
+The system implements a **Read/Write Split** at the application layer:
 
-*   **Writes (POST, PUT, DELETE, PATCH)**: Routed directly to the Primary database by default.
-*   **Reads (GET, HEAD)**: Routed via the `DatabaseLoadBalancer` to available healthy replicas.
+- **Writes** (`POST`, `PUT`, `PATCH`, `DELETE`) → Primary
+- **Reads** (`GET`, `HEAD`) → `DatabaseLoadBalancer` → healthy replica (round-robin), with Primary as fallback
 
 ```text
                           ┌──────────────────────┐
@@ -68,41 +73,46 @@ The system implements a **Read/Write Split** architecture at the application lay
 ```
 
 ### 1. Database Topology
-The system consists of three PostgreSQL nodes:
-*   **Primary**: Handles all writes and acts as a fallback for reads.
-*   **Replica 1 & 2**: Dedicated to handling read traffic.
-*   **Replication**: Asynchronous streaming replication from Primary to Replicas.
+
+| Node | Role | Notes |
+| :--- | :--- | :--- |
+| `postgres-primary` | Write | Fallback for reads when no replicas are healthy |
+| `postgres-replica1` | Read | Async streaming replica |
+| `postgres-replica2` | Read | Async streaming replica |
 
 ### 2. Health Check Service
-A dedicated process (`bin/health_check.rb`) runs alongside the application (container: `rds_health_check`). It:
-*   Connects to each DB node every 1 second.
-*   Checks connectivity and replication lag.
-*   Updates the status of each node in **Redis** (`db_status:replica_1`, etc.).
+
+`bin/health_check.rb` runs as a standalone daemon (container: `rds_health_check`) and polls every **1 second**:
+
+- Connects to each node with a 2s timeout
+- On **replicas**: queries `pg_stat_wal_receiver` + `pg_last_xact_replay_timestamp()` to compute lag
+- Marks a replica **unhealthy** if any of the following is true:
+  - WAL replay is explicitly paused (`pg_is_wal_replay_paused()`)
+  - Replication lag exceeds **1s**
+  - `last_msg_receipt_lag_s > 20s` on a streaming connection (zombie detection)
+- Writes the pruned status JSON to Redis keys: `db_status:replica_1`, `db_status:replica_2`
 
 ### 3. Load Balancing Logic
-The `DatabaseLoadBalancer` service determines the best replica for **read operations**:
-1.  **Check Local Cache**: Returns cached healthy roles if the cache is fresh (< 2s).
-2.  **Check Redis**: Fetches current health status from Redis.
-3.  **Circuit Breaker**: If Redis is down, it halts Redis checks for 10s (`failure_backoff`) and defaults to using all replicas to prevent cascading failures.
-4.  **Role Selection**: Round-robin selection among remaining healthy replicas.
-5.  **Fallback**: If no healthy replicas exist, it falls back to the Primary node.
+
+`app/services/database_load_balancer.rb` is a thread-safe Singleton that selects a read role on every request:
+
+1. **Local Cache** — if last Redis check was <2s ago, return cached result immediately
+2. **Circuit Breaker** — if Redis failed recently (<10s ago), skip Redis and use all replicas
+3. **Redis Fetch** — read `db_status:replica_*` keys and collect healthy roles
+4. **Round-Robin** — rotate through healthy replicas
+5. **Primary Fallback** — if no healthy replicas exist, return `:writing` (Primary)
 
 ### 4. Request Lifecycle
-The `ApplicationController` uses an `around_action` to intelligently route traffic:
 
 ```ruby
 around_action :switch_database
 
 def switch_database(&block)
   if request.get? || request.head?
-    # READS: Use Load Balancer to select a healthy replica
     role = DatabaseLoadBalancer.instance.reading_role
-    ApplicationRecord.connected_to(role: role) do
-      yield
-    end
+    ApplicationRecord.connected_to(role: role) { yield }
   else
-    # WRITES: Direct to Primary (Default behavior)
-    yield
+    yield  # writes always go to Primary
   end
 end
 ```
@@ -110,43 +120,66 @@ end
 ## 🏁 Getting Started
 
 ### Prerequisites
-*   Docker & Docker Compose
+
+- Docker & Docker Compose
 
 ### Setup
 
-1.  **Start Services**:
-    ```bash
-    docker-compose up --build
-    ```
+1. **Start all services:**
+   ```bash
+   docker-compose up --build
+   ```
 
-2.  **Initialize Database**:
-    ```bash
-    docker-compose run web rails db:prepare
-    ```
+2. **Initialize the database:**
+   ```bash
+   docker-compose run web rails db:prepare
+   ```
 
-3.  **Access Application**:
-    Open [http://localhost:3000](http://localhost:3000). The page displays connected DB role, IP, and current lag status.
+3. **Open the app:**
+   Visit [http://localhost:3000](http://localhost:3000) — the page shows the active DB role, node IP, and current replication lag.
 
 ## 🧪 Testing Scenarios
 
-The repository includes several scripts to simulate failures and verify the load balancer's behavior:
+Scripts to simulate various failure modes and verify load balancer behavior:
+
+| Script | Scenario |
+| :--- | :--- |
+| `test_replica1_down.sh` | Stops `postgres-replica1`; verifies traffic shifts to `replica2`. |
+| `test_replica1_lag.sh` | Pauses WAL replay on `replica1` to simulate lag >1s. |
+| `test_both_replicas_down.sh` | Stops both replicas; verifies read fallback to Primary. |
+| `test_both_replicas_lag.sh` | Pauses WAL replay on both replicas simultaneously. |
+| `test_redis_down.sh` | Stops Redis to exercise the Circuit Breaker. |
+| `test_primary_down.sh` | Stops Primary; reads continue via replicas, writes fail. |
+| `test_network_partition.sh` | Blocks traffic between Primary and Replicas via `iptables`. |
+| `test_staggered_recovery.sh` | Stops both replicas, then restores them one at a time. |
+| `generate_traffic.sh` | Sends concurrent requests to observe load distribution. |
+| `run_all_tests.sh` | Runs all test scripts sequentially. Usage: `./run_all_tests.sh <duration>` |
+
+## 📊 Monitoring
 
 | Script | Description |
 | :--- | :--- |
-| `test_replica1_down.sh` | Stops `postgres-replica1` and verifies traffic shifts to `replica2`. |
-| `test_replica1_lag.sh` | Pauses WAL replay on `replica1` to simulate lag > 1s. |
-| `test_both_replicas_down.sh` | Stops both replicas to verify fallback to Primary for reads. |
-| `test_both_replicas_lag.sh` | Pauses WAL replay on both replicas to simulate lag > 1s on all read nodes. |
-| `test_redis_down.sh` | Stops Redis to test the Circuit Breaker functionality. |
-| `test_primary_down.sh` | Simulates a primary failure. Reads continue via replicas, but writes will fail. |
-| `test_staggered_recovery.sh` | Stops both replicas, then recovers them one at a time to test gradual recovery. |
-| `generate_traffic.sh` | Sends concurrent requests to test load distribution. |
-| `run_all_tests.sh` | Runs all test scripts sequentially with status reporting. Usage: `./run_all_tests.sh <duration>` |
-| `monitor_lb.sh` | Live-monitors the load balancer status endpoint (1s interval) with colored output. |
+| `monitor_lb.sh` | Polls the load balancer status endpoint every 1s with color-coded output. |
+| `monitor_replica_lag.sh` | Queries `pg_stat_wal_receiver` on each replica and prints lag metrics in tabular form. |
+| `monitor_redis_routing.sh` | Tracks Redis routing decisions and response times in real time. |
 
 ## 📂 Project Structure
 
-*   `app/services/database_load_balancer.rb`: Core load balancing logic.
-*   `bin/health_check.rb`: Independent health monitoring script.
-*   `config/database.yml`: Multi-DB configuration.
-*   `docker-compose.yml`: Infrastructure definition.
+```
+.
+├── app/
+│   ├── controllers/application_controller.rb   # around_action: read/write routing
+│   └── services/database_load_balancer.rb      # Singleton load balancer (cache + circuit breaker)
+├── bin/
+│   └── health_check.rb                         # Standalone health monitoring daemon
+├── config/
+│   └── database.yml                            # Multi-DB config (primary + 2 replicas)
+├── docker/
+│   └── postgres/                               # PostgreSQL init & replication scripts
+├── docker-compose.yml                          # Full infrastructure definition
+├── monitor_lb.sh                               # Load balancer live monitor
+├── monitor_replica_lag.sh                      # Replication lag live monitor
+├── monitor_redis_routing.sh                    # Redis routing live monitor
+├── run_all_tests.sh                            # Master test runner
+└── test_*.sh                                   # Individual failure scenario scripts
+```
