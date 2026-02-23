@@ -130,7 +130,12 @@ puts "Starting DB Health Check monitor..."
 loop do
   NODES.each do |role_name, host|
     status = check_node(host, role_name == :primary ? :primary : :replica)
-    new_status_json = status.to_json
+    # Prune JSON for Redis to save space; keep only used fields
+    pruned_status = {
+      healthy: status[:healthy],
+      lag_ms: status[:lag_ms] || 0
+    }
+    new_status_json = pruned_status.to_json
     key = "db_status:#{role_name}"
 
     begin
