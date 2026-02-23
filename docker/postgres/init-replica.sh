@@ -29,5 +29,5 @@ chown -R postgres:postgres "$PGDATA"
 chmod 0700 "$PGDATA"
 
 echo "Current user before gosu: $(whoami)"
-echo "Executing gosu postgres postgres..."
-exec gosu postgres postgres
+echo "Executing gosu postgres $@"
+exec gosu postgres "$@"
