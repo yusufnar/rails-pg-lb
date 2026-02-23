@@ -39,11 +39,11 @@ END_TIME=$((SECONDS + DURATION))
 while [ $SECONDS -lt $END_TIME ]; do
     REMAINING=$((END_TIME - SECONDS))
     printf "\rTime remaining: %2d seconds. Checking status..." "$REMAINING"
-    
+
     # Check replica status from Redis (or application logs if preferred)
     # This assumes your app writes status to Redis. If not, we can just check docker logs or something else.
     # For now, let's just show the lag if available, or just wait.
-    
+
     sleep 1
 done
 echo -e "\nNetwork partition simulation finished."

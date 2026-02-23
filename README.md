@@ -17,7 +17,7 @@ A Ruby on Rails application demonstrating advanced database load balancing techn
 *   **Caching/State**: Redis 7
 *   **Containerization**: Docker & Docker Compose
 
-## 🏗 Architecture 
+## 🏗 Architecture
 
 The system implements a **Read/Write Split** architecture at the application layer:
 

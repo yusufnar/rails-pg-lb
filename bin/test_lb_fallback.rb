@@ -39,7 +39,7 @@ class TestLoadBalancer
 
   def reading_role
     healthy_roles = []
-    
+
     begin
       @replica_roles.each do |role|
         status_json = @redis.get("db_status:#{role}")
@@ -52,7 +52,7 @@ class TestLoadBalancer
       Rails.logger.error "DatabaseLoadBalancer: Redis is down (#{e.message}). Falling back to all replicas."
       healthy_roles = @replica_roles
     end
-    
+
     healthy_roles
   end
 end

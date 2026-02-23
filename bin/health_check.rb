@@ -33,10 +33,10 @@ end
 def check_node(host, role_expected)
   begin
     conn = PG.connect(DB_CONFIG.merge(host: host, connect_timeout: 2))
-    
+
     # Check if replica
     is_recovery = conn.exec("SELECT pg_is_in_recovery()").getvalue(0, 0) == 't'
-    
+
     if role_expected == :primary
       if is_recovery
         status = { role: 'replica', healthy: false, message: 'Expected primary but found replica' }
@@ -49,11 +49,11 @@ def check_node(host, role_expected)
       else
         # 1. Check if WAL replay is explicitly paused
         is_paused = conn.exec("SELECT pg_is_wal_replay_paused()").getvalue(0, 0) == 't'
-        
+
         # 2. Execute user-provided lag check SQL
         query = <<~SQL
           WITH stats AS (
-              SELECT 
+              SELECT
                   pg_last_wal_receive_lsn() as receive_lsn,
                   (pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn()) as is_sync,
                   COALESCE(EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())), 0) as lag_s
@@ -61,13 +61,13 @@ def check_node(host, role_expected)
           wal_recv AS (
               SELECT
                   status as replication_status,
-                  EXTRACT(EPOCH FROM (now() - last_msg_send_time)) as last_msg_send_lag_s,                  
+                  EXTRACT(EPOCH FROM (now() - last_msg_send_time)) as last_msg_send_lag_s,
                   EXTRACT(EPOCH FROM (now() - last_msg_receipt_time)) as last_msg_receipt_lag_s,
                   EXTRACT(EPOCH FROM (last_msg_receipt_time - last_msg_send_time)) as transport_lag_s,
                   EXTRACT(EPOCH FROM (now() - latest_end_time)) as last_wal_end_lag_s
               FROM pg_stat_wal_receiver
           )
-          SELECT 
+          SELECT
               receive_lsn,
               is_sync,
               replication_status,
@@ -80,7 +80,7 @@ def check_node(host, role_expected)
           FROM stats
           LEFT JOIN wal_recv ON true;
         SQL
-        
+
         result = conn.exec(query).collect { |row| row }[0]
         lag_s = result['lag_s'].to_f
         real_lag_s = result['real_lag_s'].to_f
@@ -91,10 +91,10 @@ def check_node(host, role_expected)
         last_msg_send_lag_s = result['last_msg_send_lag_s']
         receive_lsn = result['receive_lsn']
         replication_status = result['replication_status']
-        
+
         is_zombie = replication_status == 'streaming' && last_msg_receipt_lag_s && last_msg_receipt_lag_s > 20
         healthy = !is_paused && !is_zombie && (real_lag_s <= MAX_LAG_SECONDS)
-        
+
         message = []
         message << "Replay paused" if is_paused
         message << "Zombie connection detected" if is_zombie
@@ -108,10 +108,10 @@ def check_node(host, role_expected)
         message << "Transport Lag: #{transport_lag_s}s" if transport_lag_s
         message << "Msg Send Lag: #{last_msg_send_lag_s}s" if last_msg_send_lag_s
         message << "Receive LSN: #{receive_lsn || 'NULL'}"
-        
-        status = { 
-          role: 'replica', 
-          healthy: healthy, 
+
+        status = {
+          role: 'replica',
+          healthy: healthy,
           lag_ms: (real_lag_s * 1000).to_i,
           message: message.join(", "),
           is_sync: is_sync,
@@ -121,7 +121,7 @@ def check_node(host, role_expected)
         }
       end
     end
-    
+
     conn.close
     status.merge(role_expected: role_expected, is_recovery: is_recovery)
   rescue => e
@@ -166,6 +166,6 @@ loop do
     msg += " Details: #{status[:message]}" if status[:message]
     puts msg
   end
-  
+
   sleep CHECK_INTERVAL
 end
