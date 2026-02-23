@@ -31,11 +31,13 @@ test:
     database: app_test
     host: <%= ENV.fetch("REPLICA1_DB_HOST") { "postgres-primary" } %>
     replica: true
+    database_tasks: false
   replica_2:
     <<: *default
     database: app_test
     host: <%= ENV.fetch("REPLICA2_DB_HOST") { "postgres-primary" } %>
     replica: true
+    database_tasks: false
 
 production:
   primary:
