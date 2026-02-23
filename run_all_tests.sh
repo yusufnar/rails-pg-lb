@@ -18,6 +18,8 @@ TESTS=(
   "./test_replica1_down.sh $DURATION"
   "./test_both_replicas_down.sh $DURATION"
   "./test_redis_down.sh $DURATION"
+  "./test_primary_down.sh $DURATION"
+  "./test_network_partition.sh postgres-replica1 $DURATION"
 )
 
 for test_cmd in "${TESTS[@]}"; do
