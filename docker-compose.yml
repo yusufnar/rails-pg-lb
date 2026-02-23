@@ -51,7 +51,7 @@ services:
       - postgres-replica1_data:/var/lib/postgresql/data
       - ./docker/postgres/init-replica.sh:/init-replica.sh
     entrypoint: ["/bin/bash", "/init-replica.sh"]
-    command: postgres -c wal_receiver_status_interval=1s
+    command: postgres -c wal_receiver_status_interval=10s
     cap_add:
       - NET_ADMIN
 
@@ -68,7 +68,7 @@ services:
       - postgres-replica2_data:/var/lib/postgresql/data
       - ./docker/postgres/init-replica.sh:/init-replica.sh
     entrypoint: ["/bin/bash", "/init-replica.sh"]
-    command: postgres -c wal_receiver_status_interval=1s
+    command: postgres -c wal_receiver_status_interval=10s
     cap_add:
       - NET_ADMIN
 
