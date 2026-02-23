@@ -85,17 +85,19 @@ def check_node(host, role_expected)
         lag_s = result['lag_s'].to_f
         real_lag_s = result['real_lag_s'].to_f
         is_sync = result['is_sync'] == 't'
-        last_msg_receipt_lag_s = result['last_msg_receipt_lag_s']
+        last_msg_receipt_lag_s = result['last_msg_receipt_lag_s'] ? result['last_msg_receipt_lag_s'].to_f : nil
         last_wal_end_lag_s = result['last_wal_end_lag_s']
         transport_lag_s = result['transport_lag_s']
         last_msg_send_lag_s = result['last_msg_send_lag_s']
         receive_lsn = result['receive_lsn']
         replication_status = result['replication_status']
         
-        healthy = !is_paused && (real_lag_s <= MAX_LAG_SECONDS)
+        is_zombie = replication_status == 'streaming' && last_msg_receipt_lag_s && last_msg_receipt_lag_s > 20
+        healthy = !is_paused && !is_zombie && (real_lag_s <= MAX_LAG_SECONDS)
         
         message = []
         message << "Replay paused" if is_paused
+        message << "Zombie connection detected" if is_zombie
         message << "In sync" if is_sync && !is_paused
         message << "Syncing..." if !is_sync && !is_paused
         message << "Status: #{replication_status}" if replication_status
@@ -114,7 +116,8 @@ def check_node(host, role_expected)
           message: message.join(", "),
           is_sync: is_sync,
           is_paused: is_paused,
-          replication_status: replication_status
+          replication_status: replication_status,
+          last_msg_receipt_lag_s: last_msg_receipt_lag_s
         }
       end
     end
@@ -133,7 +136,8 @@ loop do
     # Prune JSON for Redis to save space; keep only used fields
     pruned_status = {
       healthy: status[:healthy],
-      lag_ms: status[:lag_ms] || 0
+      lag_ms: status[:lag_ms] || 0,
+      last_msg_receipt_lag_s: status[:last_msg_receipt_lag_s]
     }
     new_status_json = pruned_status.to_json
     key = "db_status:#{role_name}"
