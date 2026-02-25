@@ -1,5 +1,4 @@
 /tmp/*
-!/tmp/pids/
 !/tmp/storage/
 !/tmp/.keep
 !/tmp/**/.keep
